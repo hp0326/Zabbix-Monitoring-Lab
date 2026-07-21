@@ -128,6 +128,7 @@ Hostname=<Hostname of zabbix agent>
      * **Ping:** Checking host availability and latency.
      * **RAM usage:** Monitoring memory consumption.
      * **SSH listen:** Verifying if the SSH service port is active.
+<br>
    <img width="1656" height="251" alt="image" src="https://github.com/user-attachments/assets/d2129658-5cb0-4499-9c0d-0f09f1df10c7" />
 
 
