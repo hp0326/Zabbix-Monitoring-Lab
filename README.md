@@ -2,7 +2,7 @@
 
 This repository documents the process of deploying, configuring, and performing basic infrastructure monitoring using Zabbix Server and Zabbix Agent.
 
-## 🛠️ Technology Stack
+## Technology Stack
 * Red Hat Enterprise Linux
 * Ubuntu Server
 * MySQL
@@ -10,99 +10,97 @@ This repository documents the process of deploying, configuring, and performing 
 * Zabbix Server
 * Zabbix Agent
 
-1. **Environment Installation and Configuration:**
-   Update packages:
-   ```bash
-   dnf update && dnf upgrade -y
-   ```
+## Environment Installation and Configuration:
+Update packages:
+```bash
+dnf update && dnf upgrade -y
+```
 
-   Install the Zabbix repository:
-   ```bash
-   rpm -Uvh https://repo.zabbix.com/zabbix/7.2/release/alma/9/noarch/zabbix-release-latest-7.2.el9.noarch.rpm
-   dnf clean all
-   ```
+Install the Zabbix repository:
+```bash
+rpm -Uvh https://repo.zabbix.com/zabbix/7.2/release/alma/9/noarch/zabbix-release-latest-7.2.el9.noarch.rpm
+dnf clean all
+```
 
-   Install the Zabbix server:
-   ```bash
-   dnf install zabbix-server-mysql zabbix-web-mysql zabbix-apache-conf zabbix-sql-scripts zabbix-selinux-policy zabbix-agent 
-   ```
+Install the Zabbix server:
+```bash
+dnf install zabbix-server-mysql zabbix-web-mysql zabbix-apache-conf zabbix-sql-scripts zabbix-selinux-policy zabbix-agent 
+```
 
-   Install and start MySQL:
-   ```bash
-   sudo dnf install mysql-server
-   sudo systemctl start mysqld.service
-   ```
+Install and start MySQL:
+```bash
+sudo dnf install mysql-server
+sudo systemctl start mysqld.service
+```
 
-   Enable service auto-start on boot:
-   ```bash
-   sudo systemctl enable mysqld
-   ```
+Enable service auto-start on boot:
+```bash
+sudo systemctl enable mysqld
+```
 
-   Database configuration:
-   ```bash
-   mysql -uroot
-   ```
+Database configuration:
+```bash
+mysql -uroot
+```
 
-   ```
-   create database zabbix character set utf8mb4 collate utf8mb4_bin; 
-   create user zabbix identified by <PASSWORD>; 
-   grant all privileges on zabbix.* to zabbix;   
-   SET GLOBAL log_bin_trust_function_creators = 1; 
-   quit;
-   ```
+```
+create database zabbix character set utf8mb4 collate utf8mb4_bin; 
+create user zabbix identified by <PASSWORD>; 
+grant all privileges on zabbix.* to zabbix;   
+SET GLOBAL log_bin_trust_function_creators = 1; 
+quit;
+```
 
-   Import the database
-   ```bash
-   zcat /usr/share/zabbix/sql-scripts/mysql/server.sql.gz | mysql --default-character-set=utf8mb4-uzabbix -p zabbix
-   ```
+Import the database
+```bash
+zcat /usr/share/zabbix/sql-scripts/mysql/server.sql.gz | mysql --default-character-set=utf8mb4-uzabbix -p zabbix
+```
 
-   Edit the configuration file and set the database password:
-   ```bash
-   nano /etc/zabbix/zabbix_server.conf
-   ```
-   ```
-   DBPassword=<PASSWORD>
-   ```
+Edit the configuration file and set the database password:
+```bash
+nano /etc/zabbix/zabbix_server.conf
+```
+DBPassword=<PASSWORD>
 
-   Restart services and enable them on boot:
-   ```bash
-   systemctl restart zabbix-server zabbix-agent httpd php-fpm 
-   systemctl enable zabbix-server zabbix-agent httpd php-fpm
-   ```
+Restart services and enable them on boot:
+```bash
+systemctl restart zabbix-server zabbix-agent httpd php-fpm 
+systemctl enable zabbix-server zabbix-agent httpd php-fpm
+```
 
-   Configure firewall:
-   ```bash
-   firewall-cmd --add-service={http,https} --permanent 
-   firewall-cmd --add-port={10051/tcp,10050/tcp} --permanent 
-   firewall-cmd --reload 
-   firewall-cmd --list-all
-   ```
+Configure firewall:
+```bash
+firewall-cmd --add-service={http,https} --permanent 
+firewall-cmd --add-port={10051/tcp,10050/tcp} --permanent 
+firewall-cmd --reload 
+firewall-cmd --list-all
+```
 
-   Edit following settings in /etc/php.ini:
+Update following lines in /etc/php.ini:
    
-   date.timezone = Europe/Warsaw 
-   max_execution_time = 600 
-   max_input_time = 600 
-   memory_limit = 256M 
-   post_max_size = 32M 
-   upload_max_filesize = 16M 
-   session.auto_start = 0 
+date.timezone = Europe/Warsaw 
+max_execution_time = 600 
+max_input_time = 600 
+memory_limit = 256M 
+post_max_size = 32M 
+upload_max_filesize = 16M 
+session.auto_start = 0 
    
-   After updating, restart Apache:
-   ```bash
-   systemctl restart httpd
-   ```
+After updating, restart Apache:
+```bash
+systemctl restart httpd
+```
 
-   SELinux configuration:
-   ```bash
-   setsebool -P httpd_can_network_connect on
-   setsebool -P zabbix_can_network on
-   ```
+SELinux configuration:
+```bash
+setsebool -P httpd_can_network_connect on
+setsebool -P zabbix_can_network on
+```
 
-   Log into the web panel:
-   http://<YOUR_IP_ADDRESS>/zabbix/setup.php
+Log into the web panel:
+http://<YOUR_IP_ADDRESS>/zabbix/setup.php
    
-   Default credentials: User Admin, Password zabbix
+Default credentials: User Admin, Password zabbix
 
 
 
