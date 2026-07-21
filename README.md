@@ -117,7 +117,7 @@ Hostname=<Hostname of zabbix agent>
 
 ## Monitoring Configuration:
 * **Hosts and Interfaces:**
-   * Added remote host (Ubuntu Server) and managed network interfaces via Zabbix Frontend.
+Added remote host (Ubuntu Server) and managed network interfaces via Zabbix Frontend.
    <img width="1034" height="576" alt="image" src="https://github.com/user-attachments/assets/0ade460c-dedb-4a54-b6de-3e63b38c8459" />
 
 
