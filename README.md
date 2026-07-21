@@ -10,7 +10,7 @@ This repository documents the process of deploying, configuring, and performing 
 * Zabbix Server
 * Zabbix Agent
 
-## Environment Installation and Configuration:
+## Zabbix server Installation and Configuration on Red Hat Enterprise Linux:
 Update packages:
 ```bash
 dnf update && dnf upgrade -y
@@ -102,10 +102,18 @@ http://<YOUR_IP_ADDRESS>/zabbix/setup.php
    
 Default credentials: User Admin, Password zabbix
 
-
-
-
-
+## Zabbix agent Installation and Configuration on Ubuntu server
+```bash
+sudo dnf install zabbix-agent -y
+sudo systemctl enable --now zabbix-agent
+sudo systemctl status zabbix-agent
+```
+Update following lines in /etc/zabbix/zabbix_agentd.conf:
+```
+Server=<IP Address of your Zabbix server vm>
+Hostname=<Hostname of zabbix agent>
+# ListenPort=10050 <Uncomment this line>
+```
 
 
 
