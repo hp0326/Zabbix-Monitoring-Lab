@@ -117,7 +117,7 @@ Hostname=<Hostname of zabbix agent>
 
 ## Monitoring Configuration:
 * **Hosts and Interfaces:**
-* Added remote host (Ubuntu Server) and managed network interfaces via Zabbix Frontend.
+      * Added remote host (Ubuntu Server) and managed network interfaces via Zabbix Frontend.
    <img width="1034" height="576" alt="image" src="https://github.com/user-attachments/assets/0ade460c-dedb-4a54-b6de-3e63b38c8459" />
 
 
@@ -128,22 +128,26 @@ Hostname=<Hostname of zabbix agent>
      * **Ping:** Checking host availability and latency.
      * **RAM usage:** Monitoring memory consumption.
      * **SSH listen:** Verifying if the SSH service port is active.
-     * [INSERT SCREENSHOT HERE: List of configured items]
+   <img width="1656" height="251" alt="image" src="https://github.com/user-attachments/assets/d2129658-5cb0-4499-9c0d-0f09f1df10c7" />
+
 
    * **Triggers (Alert Thresholds):** Configured alert conditions:
      * **High disk usage:** Alerts when storage capacity reaches critical thresholds.
      * **Server does not respond:** Ping-based trigger detecting host downtime.
-     * [INSERT SCREENSHOT HERE: Triggers list with active statuses]
+   <img width="1671" height="129" alt="image" src="https://github.com/user-attachments/assets/0162eb11-952a-42e0-90aa-658d8fa1b046" />
+
 
    * **Graphs (Visualizations):** Created custom performance graphs:
      * **CPU usage graph**
      * **Disc usage graph**
      * **RAM usage graph**
-     * [INSERT SCREENSHOT HERE: Example performance graph, e.g., CPU or RAM]
+  <img width="1000" height="357" alt="image" src="https://github.com/user-attachments/assets/55df623e-3c8e-4d52-88fb-daafb0da2352" />
+
 
    * **Templates:**
      * Created a unified custom template containing all the mentioned items, triggers, and graphs to easily apply them to monitored hosts.
-     * [INSERT SCREENSHOT HERE: Template configuration overview]
+   <img width="843" height="65" alt="image" src="https://github.com/user-attachments/assets/3add1852-8935-4f6c-ac5f-ed661d97ddf3" />
+
 
 
 
