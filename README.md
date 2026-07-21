@@ -115,6 +115,35 @@ Hostname=<Hostname of zabbix agent>
 # ListenPort=10050 <Uncomment this line>
 ```
 
+## Monitoring Configuration:
+   * **Hosts and Interfaces:**
+     * Added remote host (Ubuntu Server) and managed network interfaces via Zabbix Frontend.
+     * <img width="1034" height="576" alt="image" src="https://github.com/user-attachments/assets/0ade460c-dedb-4a54-b6de-3e63b38c8459" />
+
+
+   * **Items (Data Metrics):** Created custom items for key infrastructure resources:
+     * **CPU usage:** Monitoring processor utilization.
+     * **Disk usage:** Tracking available storage space.
+     * **Network interface:** Measuring network traffic and throughput.
+     * **Ping:** Checking host availability and latency.
+     * **RAM usage:** Monitoring memory consumption.
+     * **SSH listen:** Verifying if the SSH service port is active.
+     * [INSERT SCREENSHOT HERE: List of configured items]
+
+   * **Triggers (Alert Thresholds):** Configured alert conditions:
+     * **High disk usage:** Alerts when storage capacity reaches critical thresholds.
+     * **Server does not respond:** Ping-based trigger detecting host downtime.
+     * [INSERT SCREENSHOT HERE: Triggers list with active statuses]
+
+   * **Graphs (Visualizations):** Created custom performance graphs:
+     * **CPU usage graph**
+     * **Disc usage graph**
+     * **RAM usage graph**
+     * [INSERT SCREENSHOT HERE: Example performance graph, e.g., CPU or RAM]
+
+   * **Templates:**
+     * Created a unified custom template containing all the mentioned items, triggers, and graphs to easily apply them to monitored hosts.
+     * [INSERT SCREENSHOT HERE: Template configuration overview]
 
 
 
