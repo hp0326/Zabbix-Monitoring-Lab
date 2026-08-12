@@ -77,7 +77,7 @@ firewall-cmd --list-all
 ```
 
 Update following lines in /etc/php.ini:
-   
+```   
 date.timezone = Europe/Warsaw 
 max_execution_time = 600 
 max_input_time = 600 
@@ -85,7 +85,7 @@ memory_limit = 256M
 post_max_size = 32M 
 upload_max_filesize = 16M 
 session.auto_start = 0 
-   
+``` 
 After updating, restart Apache:
 ```bash
 systemctl restart httpd
